@@ -5,7 +5,7 @@
         <global-header />
       </a-layout-header>
       <a-layout-content class="content">
-        <!--        <router-view />-->
+        <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
         <a href="http://qqz286.cn"> qqzoj by 琦琦子 http://qqz286.cn </a>
