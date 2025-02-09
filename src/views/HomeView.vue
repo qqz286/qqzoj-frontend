@@ -3,7 +3,7 @@
     <h1>
       home-view
     </h1>
-
+    <hello-world/>
   </div>
 </template>
 

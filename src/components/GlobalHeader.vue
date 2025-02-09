@@ -1,31 +1,37 @@
 <template>
-  <div id="globalHeader">
-    <a-menu
-      mode="horizontal"
-      :selected-keys="selectedKeys"
-      @menu-item-click="doMenuClick"
-    >
-      <a-menu-item
-        key="0"
-        :style="{ padding: 0, marginRight: '38px' }"
-        disabled
+  <a-row align="center" style="margin-bottom: 16px" id="globalHeader">
+    <a-col flex="auto">
+      <a-menu
+        mode="horizontal"
+        :selected-keys="selectedKeys"
+        @menu-item-click="doMenuClick"
       >
-        <div class="title-bar">
-          <img src="@/assets/img/logo.jpg" alt="" class="logo" />
-          <div class="title">QQZ-OJ</div>
-        </div>
-      </a-menu-item>
-      <a-menu-item v-for="item in routes" :key="item.path">
-        {{ item.name }}
-      </a-menu-item>
-    </a-menu>
-  </div>
+        <a-menu-item
+          key="0"
+          :style="{ padding: 0, marginRight: '38px' }"
+          disabled
+        >
+          <div class="title-bar">
+            <img src="@/assets/img/logo.jpg" alt="" class="logo" />
+            <div class="title">QQZ-OJ</div>
+          </div>
+        </a-menu-item>
+        <a-menu-item v-for="item in routes" :key="item.path">
+          {{ item.name }}
+        </a-menu-item>
+      </a-menu>
+    </a-col>
+    <a-col flex="100px">
+      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
+    </a-col>
+  </a-row>
 </template>
 
 <script lang="ts" setup>
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useStore } from "vuex";
 
 const router = useRouter();
 //默认主页
@@ -39,6 +45,11 @@ const doMenuClick = (key: string) => {
     path: key,
   });
 };
+const store = useStore();
+ console.log(store.state.user);
+setTimeout(() => {
+  store.dispatch("user/getLoginUser", { userName: "琦琦子" });
+}, 3000);
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
